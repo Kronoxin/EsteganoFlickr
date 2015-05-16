@@ -20,24 +20,26 @@ import java.util.logging.Logger;
 /**
  * @author Anthony Eden
  */
-public class UploaderTest extends Flickr4JavaTest 
+public class UploaderImp extends Flickr4JavaImp 
 {
 
-    public UploaderTest()
+    public UploaderImp()
     {
         try {
             super.setUp();
         } catch (FlickrException ex) {
-            Logger.getLogger(UploaderTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UploaderImp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void testUploadByteArray() throws IOException, FlickrException {
-        String a = getClass().getResource("../../../imagenes/foto.jpg").getPath();
+    public String upload() throws IOException, FlickrException {
         
-        File imageFile = new File(a);
+        String url = getClass().getResource("../../../imagenes/foto.jpg").getPath();
+        
+        File imageFile = new File(url);
         InputStream in = null;
         Uploader uploader = flickr.getUploader();
-      
+        
+        String photoId = null;
 
         ByteArrayOutputStream out = null;
         try {
@@ -50,13 +52,14 @@ public class UploaderTest extends Flickr4JavaTest
             UploadMetaData metaData = buildPhotoMetadata();
             // check correct handling of escaped value
             metaData.setTitle("photoExample");
-            String photoId = uploader.upload(out.toByteArray(), metaData);
+            photoId = uploader.upload(out.toByteArray(), metaData);
             // pint.delete(photoId); para borrar una foto.
            
         } finally {
             IOUtilities.close(in);
             IOUtilities.close(out);
         }
+        return photoId;
     }
 
     
@@ -70,16 +73,5 @@ public class UploaderTest extends Flickr4JavaTest
         UploadMetaData uploadMetaData = new UploadMetaData();
         uploadMetaData.setPublicFlag(true);
         return uploadMetaData;
-    }
-
-    public static void main(String[] args) {
-        UploaderTest up = new UploaderTest();
-        try {
-            up.testUploadByteArray();
-        } catch (IOException ex) {
-            Logger.getLogger(UploaderTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FlickrException ex) {
-            Logger.getLogger(UploaderTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

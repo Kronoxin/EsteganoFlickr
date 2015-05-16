@@ -15,15 +15,15 @@ import com.flickr4java.flickr.auth.Permission;
  * @author acaplan
  * 
  */
-public class Flickr4JavaTest {
+public class Flickr4JavaImp {
 
     protected Flickr flickr = null;
 
-    protected TestProperties testProperties;
+    protected PropertiesImp testProperties;
 
     
     public void setUp() throws FlickrException {
-        testProperties = new TestProperties();
+        testProperties = new PropertiesImp();
 
         REST rest = new REST();
         rest.setHost(testProperties.getHost());
