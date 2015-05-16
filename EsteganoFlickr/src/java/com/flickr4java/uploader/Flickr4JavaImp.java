@@ -19,11 +19,11 @@ public class Flickr4JavaImp {
 
     protected Flickr flickr = null;
 
-    protected PropertiesImp testProperties;
+    protected TestProperties testProperties;
 
     
     public void setUp() throws FlickrException {
-        testProperties = new PropertiesImp();
+        testProperties = new TestProperties();
 
         REST rest = new REST();
         rest.setHost(testProperties.getHost());

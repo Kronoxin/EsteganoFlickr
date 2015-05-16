@@ -31,9 +31,8 @@ public class UploaderImp extends Flickr4JavaImp
             Logger.getLogger(UploaderImp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public String upload() throws IOException, FlickrException {
-        
-        String url = getClass().getResource("../../../imagenes/foto.jpg").getPath();
+    public String upload(String url)
+    {
         
         File imageFile = new File(url);
         InputStream in = null;
@@ -55,7 +54,12 @@ public class UploaderImp extends Flickr4JavaImp
             photoId = uploader.upload(out.toByteArray(), metaData);
             // pint.delete(photoId); para borrar una foto.
            
-        } finally {
+        }
+        catch(Exception e)
+        {
+            
+        }
+        finally {
             IOUtilities.close(in);
             IOUtilities.close(out);
         }

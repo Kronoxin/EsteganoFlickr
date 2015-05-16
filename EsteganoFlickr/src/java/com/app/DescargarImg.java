@@ -5,7 +5,6 @@
  */
 package com.app;
 
-import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.uploader.UploaderImp;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,8 +15,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,24 +22,23 @@ import java.util.logging.Logger;
  */
 public class DescargarImg {
    
-    public void DescargarImagen(String idFoto){
+    public String DescargarImagen(String idFoto){
         
        
-       String a = getClass().getResource("../../imagenes/foto.jpg").getPath();
        //url de la imagen a descargar
         String urlFinal = "http://static.panoramio.com/photos/large/"+idFoto+".jpg";
         //nombre del fichero destino
         String nombre = "foto.jpg";
         
         // Carpeta donde se guardarán las descargas, si no existe, se creará
-        String folder = "build/web/WEB-INF/classes/imagenes/";
+        String folder = "imagenes/";
 
         // crea el directorio de destino en caso de que no exista
         File dir = new File(folder);
 
         if (!dir.exists())
                 if (!dir.mkdir())
-                        return; // no se pudo crear la carpeta de destino
+                        return null; // no se pudo crear la carpeta de destino
 
         // Crea el archivo destino
         File file = new File(folder + nombre);
@@ -86,29 +82,11 @@ public class DescargarImg {
         } catch (IOException e) {
                 e.printStackTrace();
         }
-        
-        UploaderImp b = new UploaderImp();
-        try {
-            b.upload();
-        } catch (IOException ex) {
-            Logger.getLogger(DescargarImg.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FlickrException ex) {
-            Logger.getLogger(DescargarImg.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       return file.getAbsolutePath();
         
     }
-
     
-    public static void main(String[] args) {
-        DescargarImg a = new DescargarImg();
-       
-
-        
-        Scanner sc = new Scanner(System.in);
-        String cadena = sc.nextLine();
-        
-        a.DescargarImagen(cadena);
-    }
+    
         
 }
 

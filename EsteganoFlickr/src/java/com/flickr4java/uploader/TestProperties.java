@@ -17,13 +17,13 @@ import java.util.Properties;
  * 
  * @author Darren Greaves Copyright (c) 2012 Darren Greaves.
  */
-public class PropertiesImp {
+public class TestProperties {
 
     /**
      * Logger for log4j.
      */
     @SuppressWarnings("unused")
-    private static Logger _log = Logger.getLogger(PropertiesImp.class);
+    private static Logger _log = Logger.getLogger(TestProperties.class);
 
     private String host;
 
@@ -63,7 +63,7 @@ public class PropertiesImp {
 
     private final List<String> photosetPhotos;
 
-    public PropertiesImp() {
+    public TestProperties() {
 
         photosetPhotos = new ArrayList<String>();
         Properties properties = load();
