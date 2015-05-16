@@ -190,9 +190,10 @@ public class Controlador extends HttpServlet {
         
         DescargarImg c = new DescargarImg();
         String path = c.DescargarImagen(id);
-        EsteganoAparicion.ocultar(mensaje);
+        String pathUpload = EsteganoAparicion.ocultar(mensaje,path);
+        String mensajeSacado = EsteganoAparicion.mostrar(pathUpload);
         UploaderImp b = new UploaderImp();
-        String idImagenFlickr= b.upload(path);
+        String idImagenFlickr= b.upload(pathUpload);
       
         System.out.println(id+mensaje);
     }
