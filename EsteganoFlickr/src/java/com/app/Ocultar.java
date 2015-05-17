@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ruben
  */
-@WebServlet(name = "Controlador", urlPatterns = {"/Controlador"})
-public class Controlador extends HttpServlet {
+@WebServlet(name = "Ocultar", urlPatterns = {"/Ocultar"})
+public class Ocultar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -195,7 +195,25 @@ public class Controlador extends HttpServlet {
         UploaderImp b = new UploaderImp();
         String idImagenFlickr= b.upload(pathUpload);
       
-        System.out.println(id+mensaje);
+        try (PrintWriter out = response.getWriter()) 
+        {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>\n" +
+"<html lang=\"es\">\n" +
+"<head>\n" +
+"<title>MASH-UP</title>\n" +
+"<script>\n" +
+"window.location.replace(\'https://www.flickr.com/photos/kronoxin/"+idImagenFlickr+"/sizes/o');\n" +
+"</script>\n" +
+"\n" +
+"</head>\n" +
+"\n" +
+"<body>\n" +
+"	\n" +
+"\n" +
+"</body>\n" +
+"</html>");
+                    }
     }
 
     /**

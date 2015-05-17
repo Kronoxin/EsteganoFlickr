@@ -64,7 +64,10 @@ public class EsteganoAparicion
                     int green=(rgb>>8) &0x0ff;
                     int blue= (rgb)    &0x0ff;
                     
-                    blue--;
+                    if (blue-1 >= 0)
+                        blue--;
+                    else
+                        blue++;
                     
                     img.setRGB(j, i, new Color(red,green,blue).getRGB());
             }
