@@ -41,14 +41,97 @@ public class Principal extends HttpServlet {
 "<meta charset=\"utf-8\">\n" +
 "<style type=\"text/css\">\n" +
 "\n" +
+"header{\n" +
+"	background-color: black;\n" +
+"	border-radius: 20px;\n" +
+"}\n" +
+"nav{\n" +
+"	background-color: #9cd;\n" +
+"\n" +
+"}\n" +
+"h1{\n" +
+"	color: white;\n" +
+"	text-align: center;\n" +
+"	\n" +
+"}\n" +
+"\n" +
+"#ocultar{\n" +
+"	border: 1px solid black;\n" +
+"	width: 400px;\n" +
+"	height: 350px;\n" +
+"	/*background-image: url(\"./Ocultar.jpg\");*/\n" +
+"\n" +
+"}\n" +
+"\n" +
+"#descifrar{\n" +
+"	border: 1px solid black;\n" +
+"	width: 500px;\n" +
+"	height: 350px;\n" +
+"	/*background-image: url(\"./descifrar.jpg\");*/\n" +
+"\n" +
+"}\n" +
+"td{\n" +
+"	text-align: center;\n" +
+"}\n" +
+"table{\n" +
+"\n" +
+"	padding: 20px\n" +
+"}\n" +
+"div.centrarTabla{\n" +
+"	text-align: center;\n" +
+"}\n" +
+"div.centrarTabla table{\n" +
+"	margin: 0 auto;\n" +
+"	text-align: left;\n" +
+"}\n" +
 "\n" +
 "</style>\n" +
+"</head>\n" +
 "<body>\n" +
-"	<div id=\"ocultar\"><a href=\"./Ocultar\">Ocultar</a></div>\n" +
-"	<div id=\"descifrar\"><a href=\"./Descifrar\">Descifrar</a></div>\n" +
+"\n" +
+"\n" +
+"	<header>\n" +
+"		<img src=\"Logo2.jpg\" height=\"150px\" width\"150px\">\n" +
+"		<h1>Esteganografía MASHUP - Software Corporativo</h1>\n" +
+"\n" +
+"	</header>\n" +
+"\n" +
+"	<nav>\n" +
+"\n" +
+"	</nav>\n" +
+"<div class=\"centrarTabla\">\n" +
+"	<table>\n" +
+"		<tr>\n" +
+"			<td>\n" +
+"				<div id=\"ocultar\"><a href=\"./Ocultar\" target=\"_blank\"><img src=\"./Ocultar.jpg\" width=\"400px\" height=\"350px\"></a>\n" +
+"						</div>\n" +
+"			</td>\n" +
+"\n" +
+"			<td>\n" +
+"				<div id=\"descifrar\"><a href=\"./Descifrar\" target=\"_blank\"><img src=\"./descifrar.jpg\" width=\"500px\" height=\"350px\"></a></div>\n" +
+"\n" +
+"			</td>\n" +
+"\n" +
+"		</tr>\n" +
+"		<tr>\n" +
+"			<td><h2>Ocultar</h2></td>\n" +
+"			<td><h2>Descifrar</h2></td>\n" +
+"		</tr>\n" +
+"\n" +
+"\n" +
+"\n" +
+"	</table>\n" +
+"</div>\n" +
+"	\n" +
+"	\n" +
+"	<footer>\n" +
+"		<hr>\n" +
+"		<p>Rubén Gómez Fuentes y Daniel Lago Aguado - Copyright 2015</p>\n" +
+"	</footer>\n" +
+"\n" +
 "\n" +
 "</body>\n" +
-"</head>\n" +
+"\n" +
 "</html>");
            
         }
