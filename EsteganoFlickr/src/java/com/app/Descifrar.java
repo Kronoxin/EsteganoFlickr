@@ -32,14 +32,10 @@ public class Descifrar extends HttpServlet {
     
    private boolean isMultipart;
    private String filePath;
-   private int maxFileSize = 5000 * 10024;
+   private int maxFileSize = 50000 * 1024;
    private int maxMemSize = 400 * 10024;
    private File file ;
 
-   public void init( ){
-      // Get the file location where it would be stored.
-      filePath = getServletContext().getInitParameter("file-upload"); 
-   }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -126,7 +122,7 @@ public class Descifrar extends HttpServlet {
       ServletFileUpload upload = new ServletFileUpload(factory);
       // maximum file size to be uploaded.
       upload.setSizeMax( maxFileSize );
-
+      filePath = "imagenes/imagenDescifrar.png";
       try{ 
             // Parse the request to get file items.
             List fileItems = upload.parseRequest(request);
@@ -151,19 +147,15 @@ public class Descifrar extends HttpServlet {
                   boolean isInMemory = fi.isInMemory();
                   long sizeInBytes = fi.getSize();
                   // Write the file
-                  if( fileName.lastIndexOf("\\") >= 0 ){
-                     file = new File( filePath + 
-                     fileName.substring( fileName.lastIndexOf("\\"))) ;
-                  }else{
-                     file = new File( filePath + 
-                     fileName.substring(fileName.lastIndexOf("\\")+1)) ;
-                  }
-                  fi.write( file ) ;
+                
+                  file = new File(filePath);
+                  
+                  fi.write(file) ;
                   out.println("<h2>");
                   out.println("Mensaje : ");
                   out.println("</h2>");
                   //cambiar el fielName por el mensaje descifrado
-                  out.println("El mensaje es : " + fileName + "<br>");
+                  out.println("El mensaje es : " + EsteganoAparicion.mostrar(file.getAbsolutePath()) + "<br>");
                }
             }
             out.println("</body>");
