@@ -5,6 +5,8 @@
  */
 package com.app;
 
+import com.cdyne.ws.IP2Geo;
+import com.cdyne.ws.IPInformation;
 import com.flickr4java.uploader.UploaderImp;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.WebServiceRef;
 
 /**
  *
@@ -20,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Ocultar", urlPatterns = {"/Ocultar"})
 public class Ocultar extends HttpServlet {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/ws.cdyne.com/ip2geo/ip2geo.asmx.wsdl")
+    private IP2Geo service;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +38,7 @@ public class Ocultar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        IPInformation ip = resolveIP(request.getRemoteAddr());
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>\n" +
@@ -96,7 +102,7 @@ public class Ocultar extends HttpServlet {
 "function initialize() {\n" +
 "  var mapOptions = {\n" +
 "    zoom: 16,\n" +
-"    center: new google.maps.LatLng(40.4378271, -3.6795367)\n" +
+"    center: new google.maps.LatLng("+ip.getLatitude()+", "+ip.getLongitude()+")\n" +
 "  };\n" +
 "\n" +
 "  var map = new google.maps.Map(document.getElementById('map-canvas'),\n" +
@@ -223,4 +229,13 @@ public class Ocultar extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private IPInformation resolveIP(String ipAddress) 
+    {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        com.cdyne.ws.IP2GeoSoap port = service.getIP2GeoSoap();
+        return port.resolveIP(ipAddress, "0");
+    }
+
+    
 }
