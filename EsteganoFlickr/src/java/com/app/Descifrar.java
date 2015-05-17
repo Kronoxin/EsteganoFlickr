@@ -51,12 +51,31 @@ public class Descifrar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<html>\n" +
+            out.println("<!DOCTYPE html>\n" +
+"<html lang=\"es\">\n" +
 "<head>\n" +
-"<title>Descifrar Mensaje</title>\n" +
+"<title>MASH-UP</title>\n" +
+"<meta charset=\"utf-8\">\n" +
+"<style type=\"text/css\">\n" +
+"\n" +
+"h2{\n" +
+"	background-color: #9eb;\n" +
+"	border-radius: 20px;\n" +
+"	border: 1px solid black;\n" +
+"	width: auto;\n" +
+"	height: 100px;\n" +
+"	text-align: center;\n" +
+"}\n" +
+"\n" +
+"\n" +
+"</style>\n" +
 "</head>\n" +
+"\n" +
 "<body>\n" +
-"<h3>Descifrar Mensaje</h3>\n" +
+"\n" +
+"\n" +
+"	<h2><br>Descifrar Mensaje</h2>\n" +
+"\n" +
 "<hr>\n" +
 "Sube la imagen (PNG) :\n" +
 "<p></p>\n" +
@@ -130,11 +149,36 @@ public class Descifrar extends HttpServlet {
             // Process the uploaded file items
             Iterator i = fileItems.iterator();
 
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Descifrando..</title>");  
-            out.println("</head>");
-            out.println("<body>");
+            out.println("<!DOCTYPE html>\n" +
+"<html lang=\"es\">\n" +
+"<head>\n" +
+"<title>MASH-UP</title>\n" +
+"<meta charset=\"utf-8\">\n" +
+"<style type=\"text/css\">\n" +
+"\n" +
+"h2{\n" +
+"	background-color: #9eb;\n" +
+"	border-radius: 20px;\n" +
+"	border: 1px solid black;\n" +
+"	width: auto;\n" +
+"	height: 100px;\n" +
+"	text-align: center;\n" +
+"}\n" +
+"\n" +
+"h3{\n" +
+"	border: 1px solid black;\n" +
+"	width: auto;\n" +
+"	height: 200px;\n" +
+"	text-align: center;\n" +
+"\n" +
+"}\n" +
+"\n" +
+"\n" +
+"</style>\n" +
+"</head>\n" +
+"\n" +
+"<body>");
+          
             while ( i.hasNext () ) 
             {
                FileItem fi = (FileItem)i.next();
@@ -152,10 +196,17 @@ public class Descifrar extends HttpServlet {
                   
                   fi.write(file) ;
                   out.println("<h2>");
-                  out.println("Mensaje : ");
+                  out.println("<p>");
+                  out.println("</p>");
+                  out.println("Mensaje");
                   out.println("</h2>");
                   //cambiar el fielName por el mensaje descifrado
-                  out.println("El mensaje es : " + EsteganoAparicion.mostrar(file.getAbsolutePath()) + "<br>");
+                  out.println("<h3>");
+                  out.println("<p>");
+                  out.println("</p>");
+                  out.println("" + EsteganoAparicion.mostrar(file.getAbsolutePath()) + "<br>");
+                  out.println("</h3>");
+                  
                }
             }
             out.println("</body>");

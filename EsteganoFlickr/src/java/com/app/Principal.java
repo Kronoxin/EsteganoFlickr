@@ -126,7 +126,9 @@ public class Principal extends HttpServlet {
 "	\n" +
 "	<footer>\n" +
 "		<hr>\n" +
-"		<p>Rubén Gómez Fuentes y Daniel Lago Aguado - Copyright 2015</p>\n" +
+"		<h4>Autores:</h4>\n" +
+"		<p>	Gómez Fuentes,Rubén</p>\n" +
+"		<p>	Lago Aguado,Daniel</p>\n" +
 "	</footer>\n" +
 "\n" +
 "\n" +

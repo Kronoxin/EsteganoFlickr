@@ -57,13 +57,15 @@ public class Ocultar extends HttpServlet {
 "	  #formulario{\n" +
 "		margin-top: 5px;\n" +
 "		margin-left: 10px;\n" +
-"		border: 1px solid black;\n" +
 "		width: 19%;\n" +
 "		height: 100%;\n" +
 "		float:right;\n" +
 "\n" +
 "	  \n" +
 "	  }\n" +
+"    body{\n" +
+"      background-color: #9eb;\n" +
+"    }\n" +
 "	  \n" +
 "      #panel {\n" +
 "        position: absolute;\n" +
@@ -94,7 +96,7 @@ public class Ocultar extends HttpServlet {
 "function initialize() {\n" +
 "  var mapOptions = {\n" +
 "    zoom: 16,\n" +
-"    center: new google.maps.LatLng(47.651743, -122.349243)\n" +
+"    center: new google.maps.LatLng(40.4378271, -3.6795367)\n" +
 "  };\n" +
 "\n" +
 "  var map = new google.maps.Map(document.getElementById('map-canvas'),\n" +
@@ -103,7 +105,7 @@ public class Ocultar extends HttpServlet {
 "  var panoramioLayer = new google.maps.panoramio.PanoramioLayer();\n" +
 "  panoramioLayer.setMap(map);\n" +
 "\n" +
-"  var photoPanel = document.getElementById('ºphoto-panel');\n" +
+"  var photoPanel = document.getElementById('photo-panel');\n" +
 "  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);\n" +
 "\n" +
 "  google.maps.event.addListener(panoramioLayer, 'click', function(photo) {\n" +
@@ -112,20 +114,14 @@ public class Ocultar extends HttpServlet {
 "    link.innerHTML = photo.featureDetails.title + ': ' +\n" +
 "        photo.featureDetails.author;\n" +
 "    link.setAttribute('href', photo.featureDetails.url);\n" +
-"    //Mostramos el alert con la URL de la imagen\n" +
-"	  //alert(photo.featureDetails.url);\n" +
+"	 //Mostramos el alert con la URL de la imagen\n" +
+"    //alert(photo.featureDetails.url);\n" +
 "    //Añadimos esa imagen elegida al input del formulario\n" +
 "    var str = photo.featureDetails.url.lastIndexOf(\"/\");\n" +
 "    str++;\n" +
 "    var idFoto= photo.featureDetails.url.substring(str);\n" +
 "\n" +
 "    document.getElementById(\"imgelegida\").value=idFoto;\n" +
-"\n" +
-"    var fileTransfer = new FileTransfer();\n" +
-"    var uri = encodeURI(photo.featureDetails.url);\n" +
-"\n" +
-"\n" +
-"\n" +
 "\n" +
 "    li.appendChild(link);\n" +
 "    photoPanel.appendChild(li);\n" +
@@ -138,21 +134,22 @@ public class Ocultar extends HttpServlet {
 "    </script>\n" +
 "  </head>\n" +
 "  <body>\n" +
-"  <!--<ul id=\"photo-panel\">\n" +
+" <ul id=\"photo-panel\">\n" +
 "      <li><strong>Photos clicked</strong></li>\n" +
-"    </ul>-->\n" +
+"    </ul>\n" +
 "    <div id=\"map-canvas\"></div>\n" +
-"	<div id=\"formulario\">\n" +
-"	<form action=\"\" method=\"POST\">\n" +
+"  <div id=\"formulario\">\n" +
+"    <h3 style=\"text-align: center; border-radius: 20px; border: 1px solid black;\">Ocultar</h3>\n" +
+"  <form action=\"\" method=\"POST\">\n" +
 "      <p>Has elegido la imagen: </p>\n" +
 "      <input id=\"imgelegida\" name=\"imgelegida\" type\"text\" value=\"\" size=\"30\">\n" +
 "      <p>Mensaje oculto: </p>\n" +
 "      <textarea id=\"mensaje\" name=\"mensaje\" rows=\"10\" cols=\"30\"></textarea>\n" +
 "      <br>\n" +
-"	    <input type =\"submit\" value=\"enviar\">\n" +
-"	\n" +
-"	</form>\n" +
-"	</div>\n" +
+"      <input type =\"submit\" value=\"Ocultar mensaje y subir a Flickr\">\n" +
+"  \n" +
+"  </form>\n" +
+"  </div>\n" +
 "  </body>\n" +
 "</html>");
 
