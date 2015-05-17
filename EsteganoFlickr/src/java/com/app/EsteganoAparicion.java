@@ -35,9 +35,9 @@ public class EsteganoAparicion
                     int green=(rgb>>8) &0x0ff;
                     int blue= (rgb)    &0x0ff;
                     
-                    if(blue%2 != 0)
+                    if((blue%2) != 0)
                     {
-                        if(blue+1 < 256)
+                        if((blue+1) < 256)
                         {
                             blue++;
                         }
@@ -46,15 +46,17 @@ public class EsteganoAparicion
                             blue--;
                         }
                         
-                        img.setRGB(j, i, new Color(red,green,blue).getRGB());
                     }
+                    int nuevoRGB= new Color(red,green,blue).getRGB();
+                    img.setRGB(j, i, nuevoRGB);
+                    
                    
                 }
             }
             
             for(int k = 0; k < mensaje.length(); k++)
             {
-                    int j = Character.getNumericValue(mensaje.charAt(k));
+                    int j = mensaje.charAt(k);
                     int i = k;
                     
                     int rgb = img.getRGB(j, i);
@@ -64,12 +66,13 @@ public class EsteganoAparicion
                     
                     blue--;
                     
-                    img.setRGB(Character.getNumericValue(mensaje.charAt(k)), k, new Color(red,green,blue).getRGB());
+                    img.setRGB(j, i, new Color(red,green,blue).getRGB());
             }
             
-            File outputfile = new File("imagenes/fotoReady.jpg");
-            ImageIO.write(img, "jpg", outputfile);
+            File outputfile = new File("imagenes/fotoReady.png");
+            ImageIO.write(img, "png", outputfile);
             rutaNueva = outputfile.getAbsolutePath();
+                    
         } 
         catch (IOException e) {
             e.printStackTrace();
@@ -78,6 +81,24 @@ public class EsteganoAparicion
         return rutaNueva;
     }
     
+    public static boolean todosPares(BufferedImage img)
+    {
+        boolean correcto = true;
+        
+        for (int i = 0; i < img.getHeight();i++)
+            {
+                for(int j= 0; j < img.getWidth();j++)
+                {
+                      int rgb = img.getRGB(j, i);
+                   
+                    int blue= (rgb)    &0x0ff;
+                    
+                    correcto = correcto && (blue%2 == 0);
+                }
+            }
+        return correcto;
+        
+    }
     public static String mostrar(String path)
     {
         String mensaje = "";
@@ -92,12 +113,13 @@ public class EsteganoAparicion
                 for(int j= 0; j < img.getWidth();j++)
                 {
                     int rgb = img.getRGB(j, i);
-                    
+                    int red = (rgb>>16)&0x0ff;
+                    int green=(rgb>>8) &0x0ff;
                     int blue= (rgb)    &0x0ff;
                     
                     if(blue%2 != 0)
                     {
-                        mensaje += Character.toChars(j);
+                        mensaje += (char)j;
                     }
                     
                 }

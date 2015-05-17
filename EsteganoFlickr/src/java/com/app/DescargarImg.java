@@ -6,6 +6,7 @@
 package com.app;
 
 import com.flickr4java.uploader.UploaderImp;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -42,6 +44,7 @@ public class DescargarImg {
 
         // Crea el archivo destino
         File file = new File(folder + nombre);
+        File file2 = null;
 
         try {
 
@@ -77,12 +80,16 @@ public class DescargarImg {
 
             System.out.println("\ndescarga finalizada\n");
             
+            BufferedImage bufferedImage = ImageIO.read(new File(file.getAbsolutePath()));
+            file2 = new File("imagenes/foto.png");
+            ImageIO.write(bufferedImage, "png", file2);
+            
         } catch (MalformedURLException e) {
                 System.out.println("la id de la imagen: " + idFoto + " no es valida!");
         } catch (IOException e) {
                 e.printStackTrace();
         }
-       return file.getAbsolutePath();
+       return file2.getAbsolutePath();
         
     }
     
